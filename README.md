@@ -40,3 +40,7 @@ echo '{"TagSet": [{"Key": "test_foo","Value": "foo"},{    "Key": "test_bar","Val
 docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 harbour:latest s3api put-object-tagging --bucket biohack-bucket --key 1.vcf --tagging "$(<tag-example-file-1.json)"
 
 
+#get presign url
+docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 harbour:latest s3 presign s3://biohack-bucket/tuba3d.bam --expires-in 6000
+docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 harbour:latest s3 presign s3://biohack-bucket/tuba3d.bam.bai --expires-in 6000
+
