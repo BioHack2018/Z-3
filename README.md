@@ -39,8 +39,14 @@ b) tag-value from file
 echo '{"TagSet": [{"Key": "test_foo","Value": "foo"},{    "Key": "test_bar","Value": "bar"}]}' > tag-example-file-1.json
 docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 harbour:latest s3api put-object-tagging --bucket biohack-bucket --key 1.vcf --tagging "$(<tag-example-file-1.json)"
 
-
+```
 #get presign url
+```
 docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 harbour:latest s3 presign s3://biohack-bucket/tuba3d.bam --expires-in 6000
 docker run -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 harbour:latest s3 presign s3://biohack-bucket/tuba3d.bam.bai --expires-in 6000
+
+```
+#upload file paired with json
+```
+docker run -v "$PWD/data/":/tmp/data/ -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION=us-east-1 --entrypoint "/usr/local/bin/upload-file-and-json.bash" harbour:latest biohack-bucket /tmp/data/test_up.txt /tmp/data/test_up.json
 
