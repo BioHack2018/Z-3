@@ -1,0 +1,9 @@
+ {
+    "fields": {
+      "key1": [ "value1", "value2"],
+      "key2": "value3",
+      "key3": 24
+    },
+    "id": "id",
+    "type": "add"
+ }
