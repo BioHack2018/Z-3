@@ -4,6 +4,10 @@ BUCKET=$1
 FILE=$2
 FILE_JSON=$3
 
+if [ -z "$BUCKET" ]; then
+	echo "ERROR: No bucket specified"; exit 1
+fi
+
 if [ -z "$FILE" ]; then
 	echo "ERROR: Input file was not specified"; exit 1
 fi
